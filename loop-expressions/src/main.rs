@@ -45,8 +45,8 @@ fn main() {
     an Option<&Value> type, Rust wraps the result of the method call
     with the "Some()" notation.
     */
-    
-    
+
+
     // # Remove a key-value pair #
     /*
     We can remove entries from a hash map by using the .remove() method.
@@ -59,4 +59,114 @@ fn main() {
 
     // Confirm book review removed
     println!("\nReview for \'{}\': {:?}", obsolete, reviews.get(obsolete));
+
+
+    // ## Use `for`, `whil`, and `loop` expressions ##
+    /*
+    Rust offers three loop expressions to make a program repeat a block of code:
+        - loop: Repeat, unless a manual stop occurs.
+        - while: Repeat while a condition remains true.
+        - for: Repeat for all values in a collection.
+    */
+
+
+    // # Loop expression
+    println!("\n\nLoop loop:\n");
+    /*
+    The loop expression creates an infinite loop. This keyword lets
+    us repeat the actions in the expression body continuously. 
+    The actions repeat until we take some direct action to make
+    the loop stop.
+    */
+
+    /* Infinite loop printing "We loop forever!"
+    loop {
+        println!("We loop forever!");
+    }
+    */
+
+    // # Stoping a loop expression
+    /*
+    The most common way to stop a loop expression is by using the
+    `break` keyword to set a break point:
+    */
+    loop {
+        // Keep printing, printing, printing...
+        println!("We loop forever!");
+        // On the other hand, maybe we should stop!
+        break;
+    }
+
+    /*
+    The following example shows how we can use the break keyword
+    in a loop expression to also return a value:
+    */
+    let mut counter = 1;
+    // stop_loop is set when loop stops
+    let stop_loop = loop {
+        counter *= 2;
+        if counter > 100 {
+            // Stop loop, return counter value
+            break counter;
+        }
+    };
+    // Loop should break when counter = 128
+    println!("Break the loop at counter = {}.", stop_loop);
+
+    /*
+    The loop expression body can have more than one break point.
+    When the expression has multiple break points, every break point
+    must return a value of the same type. All values must be of type
+    integer, or String, or bool, and so on. When a break point doesn't
+    explicitly return a value, the program interprets the expression
+    result as an empty tuple, ().
+    */
+    
+
+    // # Loop a while
+    println!("\n\nWhile loop:\n");
+    /*
+    The while loop uses a conditional expression. The loop repeats as
+    long as the conditional expression remains true.
+    */
+    counter = 1;
+    while counter < 5 {
+        println!("We loop a while...");
+        counter = counter + 1;
+    }
+    
+
+    // # Loop for these values
+    println!("\n\nFor loop:\n");
+    /*
+    The `for` loop uses an iterator to process a collection of items.
+    The loop repeats the actions in the expression body for each
+    item in the collection. This type of loop repetition is called
+    iterating. When all iterations are complete, the loop stops.
+
+    In Rust, we can iterate over any collection type, such as an
+    array, vector, or hash map. Rust uses an iterator to move through
+    each item in the collection from first to last.
+    
+    We access the items in the collection by using the iter() method.
+    The for expression binds the current value of the iterator to
+    the result of the iter() method. In the expression body, we can
+    work with the iterator value.
+    */
+    println!("Using iter()");
+    let big_birds = ["ostrich", "peacock", "stork"];
+    for bird in big_birds.iter() {
+        println!("The {} is a big bird.", bird);
+    }
+    
+    /*
+    Another easy way to create an iterator is to use the range
+    notation `a..b`. The iterator starts at the `a` value and
+    continues through to `b` in steps of one, but it doesn't use the
+    value `b`.
+    */
+    println!("\nUsing a..b notation");
+    for number in 0..5 {
+        println!("{}", number * 2);
+    }
 }
